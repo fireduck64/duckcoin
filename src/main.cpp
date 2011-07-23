@@ -30,7 +30,7 @@ unsigned int nTransactionsUpdated = 0;
 map<COutPoint, CInPoint> mapNextTx;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x13651121da51bdc6420ed90234ac63669762e0933f5c39c5e16f3cdb62233e5a");
+uint256 hashGenesisBlock("0xc8a6efaeffcac3686605ed613251a3b492225dec9c1852f56a6128d9248caec7");
 CBigNum bnProofOfWorkLimit(~uint256(0) >> 32);
 const int nTotalBlocksEstimate = 0; // Conservative estimate of total nr of blocks on main chain
 const int nInitialBlockThreshold = 120; // Regard blocks up until N-threshold as "initial download"
@@ -1527,7 +1527,7 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
         block.nTime    = 1311443212;
-        block.nBits    = 0x1d00ffff;
+        block.nBits    = 0xffffffff;
         block.nNonce   = 937264132;
 
         if (fTestNet)
@@ -1538,6 +1538,8 @@ bool LoadBlockIndex(bool fAllowNew)
         }
 
         //// debug print
+        printf("block %s\n", block.GetHash().ToString().c_str());
+	block.nNonce = 9;
         printf("block %s\n", block.GetHash().ToString().c_str());
         printf("genesis %s\n", hashGenesisBlock.ToString().c_str());
         printf("merkle root %s\n", block.hashMerkleRoot.ToString().c_str());

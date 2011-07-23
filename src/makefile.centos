@@ -52,8 +52,7 @@ OBJS= \
     cryptopp/obj/cpu.o
 
 
-all: duckcoind
-
+all: duckcoind findgene
 
 obj/%.o: %.cpp $(HEADERS)
 	$(CXX) -c $(CXXFLAGS) $(WXINCLUDEPATHS) -DGUI -o $@ $<
@@ -65,10 +64,14 @@ duckcoin: $(OBJS) obj/ui.o obj/uibase.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(WXLIBS) $(LIBS)
 
 
+
 obj/nogui/%.o: %.cpp $(HEADERS)
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
 duckcoind: $(OBJS:obj/%=obj/nogui/%)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS)
+
+findgene: obj/nogui/findgene.o obj/nogui/util.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS)
 
 obj/test/%.o: test/%.cpp $(HEADERS)
@@ -78,7 +81,7 @@ test_bitcoin: obj/test/test_bitcoin.o
 	$(CXX) $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS) -lboost_unit_test_framework
 
 clean:
-	-rm -f duckcoin duckcoind test_bitcoin
+	-rm -f duckcoin duckcoind test_bitcoin findgene
 	-rm -f obj/*.o
 	-rm -f obj/nogui/*.o
 	-rm -f obj/test/*.o
