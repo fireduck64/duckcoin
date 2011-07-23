@@ -30,7 +30,7 @@ unsigned int nTransactionsUpdated = 0;
 map<COutPoint, CInPoint> mapNextTx;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x0000000000123456789012345678900101010101010101010101010101010101");
+uint256 hashGenesisBlock("0x13651121da51bdc6420ed90234ac63669762e0933f5c39c5e16f3cdb62233e5a");
 CBigNum bnProofOfWorkLimit(~uint256(0) >> 32);
 const int nTotalBlocksEstimate = 0; // Conservative estimate of total nr of blocks on main chain
 const int nInitialBlockThreshold = 120; // Regard blocks up until N-threshold as "initial download"
@@ -1514,7 +1514,7 @@ bool LoadBlockIndex(bool fAllowNew)
         //   vMerkleTree: 4a5e1e
 
         // Genesis block
-        const char* pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
+        const char* pszTimestamp = "2011-07-23 Duckcoin";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -1526,9 +1526,9 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1231006505;
+        block.nTime    = 1311443212;
         block.nBits    = 0x1d00ffff;
-        block.nNonce   = 2083236893;
+        block.nNonce   = 937264132;
 
         if (fTestNet)
         {
@@ -1538,10 +1538,10 @@ bool LoadBlockIndex(bool fAllowNew)
         }
 
         //// debug print
-        printf("%s\n", block.GetHash().ToString().c_str());
-        printf("%s\n", hashGenesisBlock.ToString().c_str());
-        printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
+        printf("block %s\n", block.GetHash().ToString().c_str());
+        printf("genesis %s\n", hashGenesisBlock.ToString().c_str());
+        printf("merkle root %s\n", block.hashMerkleRoot.ToString().c_str());
+        assert(block.hashMerkleRoot == uint256("0x2a9f6c0e9a38c41bec3537d034ff203c61a09cecc878a4aa58830bfc146b58c4"));
         block.print();
         assert(block.GetHash() == hashGenesisBlock);
 

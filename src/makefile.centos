@@ -52,7 +52,7 @@ OBJS= \
     cryptopp/obj/cpu.o
 
 
-all: bitcoind
+all: duckcoind
 
 
 obj/%.o: %.cpp $(HEADERS)
@@ -61,14 +61,14 @@ obj/%.o: %.cpp $(HEADERS)
 cryptopp/obj/%.o: cryptopp/%.cpp
 	$(CXX) -c $(CXXFLAGS) -O3 -o $@ $<
 
-bitcoin: $(OBJS) obj/ui.o obj/uibase.o
+duckcoin: $(OBJS) obj/ui.o obj/uibase.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(WXLIBS) $(LIBS)
 
 
 obj/nogui/%.o: %.cpp $(HEADERS)
 	$(CXX) -c $(CXXFLAGS) -o $@ $<
 
-bitcoind: $(OBJS:obj/%=obj/nogui/%)
+duckcoind: $(OBJS:obj/%=obj/nogui/%)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS)
 
 obj/test/%.o: test/%.cpp $(HEADERS)
@@ -78,7 +78,7 @@ test_bitcoin: obj/test/test_bitcoin.o
 	$(CXX) $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS) -lboost_unit_test_framework
 
 clean:
-	-rm -f bitcoin bitcoind test_bitcoin
+	-rm -f duckcoin duckcoind test_bitcoin
 	-rm -f obj/*.o
 	-rm -f obj/nogui/*.o
 	-rm -f obj/test/*.o
