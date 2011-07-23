@@ -17,14 +17,14 @@ LIBS= \
    -l boost_system \
    -l boost_filesystem \
    -l boost_program_options \
-   -l boost_thread \
+   -l boost_thread-mt \
    -l db_cxx \
    -l ssl \
    -l crypto
 
 LIBS+= \
  -Wl,-Bdynamic \
-   -l gthread-2.0 \
+   -l pthread \
    -l z \
    -l dl \
    -l pthread
