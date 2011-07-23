@@ -30,9 +30,9 @@ unsigned int nTransactionsUpdated = 0;
 map<COutPoint, CInPoint> mapNextTx;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f");
+uint256 hashGenesisBlock("0x0000000000123456789012345678900101010101010101010101010101010101");
 CBigNum bnProofOfWorkLimit(~uint256(0) >> 32);
-const int nTotalBlocksEstimate = 134444; // Conservative estimate of total nr of blocks on main chain
+const int nTotalBlocksEstimate = 0; // Conservative estimate of total nr of blocks on main chain
 const int nInitialBlockThreshold = 120; // Regard blocks up until N-threshold as "initial download"
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;

@@ -670,7 +670,7 @@ string GetDefaultDataDir()
     return strHome + "Bitcoin";
 #else
     // Unix
-    return strHome + ".bitcoin";
+    return strHome + ".duckcoin";
 #endif
 #endif
 }
