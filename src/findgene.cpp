@@ -22,27 +22,28 @@ int main(int argc, char* argv[])
     block.nVersion = 1;
     block.nTime    = 1311443212;
     block.nBits    = 0x1d00ffff;
-    block.nNonce   = 0;
+    block.nNonce   = 1873153963;
 
     CBigNum bnTarget;
     bnTarget.SetCompact(block.nBits);
     uint256 target = bnTarget.getuint256();
 
-    unsigned int i=1;
+    unsigned int i=0;
     while(i!=0)
     {
 
         block.nNonce = i;
 
         uint256 hash =  block.GetHash();
-        if (i % 100000 == 0)
+        if (i % 1000000 == 0)
         {
-            printf("nonce %d\n", i);
+            printf("nonce %u\n", i);
         }
         // Check proof of work matches claimed amount
         if (hash < target)
         {
             printf("hash %s\n", hash.ToString().c_str());
+            printf("merkle root %s\n", block.hashMerkleRoot.ToString().c_str());
             printf("nonce %d\n", i);
             return 0;
         }
